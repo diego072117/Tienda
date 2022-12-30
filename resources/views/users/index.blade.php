@@ -1,5 +1,5 @@
 <x-app>
-    <section class="container">
+    <section class="container" style="margin-left: 25em ">
         <div class="card my-5">
 
           <div class="card-header d-flex justify-content-between">

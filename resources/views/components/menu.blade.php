@@ -1,5 +1,6 @@
  {{-- Menu --}}
- <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+
+<nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
     <div class="container">
         <a class="navbar-brand" href="{{ url('/') }}">SAGA</a>
 
@@ -61,3 +62,65 @@
         </div>
     </div>
 </nav>
+
+@role('admin')
+<div class="sidebar">
+    <div class="sidebar-brand">
+        <h2><span></span> <span>SAGA </span></h2>
+    </div>
+    <!--Secciones-del-tablero-->
+    <div class="sidebar-menu">
+        <ul>
+            <li>
+                <a href="" class="active"><span class="las la-home"></span>
+                <span>Inicio</span></a>
+            </li>
+            <li>
+                <a href="{{ route('users') }}"><span class="las la-stethoscope"></span>
+                <span>Usuarios</span></a>
+            </li>
+            <li>
+                <a href="{{ route('products') }}"><span class="las la-user"></span>
+                <span>Productos</span></a>
+            </li>
+            <li>
+                <a href="{{ route('categories') }}"><span class="las la-user-injured"></span>
+                <span>Categorias</span></a>
+            </li>
+            <li>
+                <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
+                                          document.getElementById('logout-form').submit();">Logout</a>
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                            @csrf
+                </form>
+            </li>
+         
+        </ul>
+    </div>
+</div>
+
+<div class="main-content">
+    <header>
+        <h2>
+            <label for="nav-toggle">
+                <span class="las la-bars"></span>
+            </label> Tablero
+        </h2>
+
+        <div class="search-wrapper">
+            <span class="las la-search"></span>
+            <input type="search" placeholder="Buscar aquí" />
+        </div>
+        <div class="user-wrapper">
+            {{-- <img src="img/Avatar.png" width="40px" height="40px" alt=""> --}}
+            <div>
+                <h4>Administrador</h4>
+                <small>{{ Auth::user()->full_name }}</small>
+            </div>
+        </div>
+    </header>
+
+
+  
+</div>
+@endrole

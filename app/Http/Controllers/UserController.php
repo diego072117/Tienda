@@ -113,4 +113,10 @@ class UserController extends Controller
 
     }
 
+    public function Admin(){
+
+        return view('admin'); 
+
+    }
+
 }

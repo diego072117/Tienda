@@ -101,5 +101,18 @@ class ProductController extends Controller
         })->rawColumns(['action'])->make();
 
     }
+
+    public function addToCart(Product $product)
+    {
+        dd($product);
+        // Cart::session(auth()->id)->add(array(
+        //     'id' => $product->id,
+        //     'name' => $product->name,
+        //     'price' => $product->price,
+        //     'quantity' => 1,
+        //     'attributes' => array(),
+        //     'associatedModel' => $Product
+        // ));
+    }
    
 }
