@@ -63,7 +63,8 @@ Route::group(['prefix'=>'Products',['middleware' => ['auth', 'role:admin']],'con
 // products
 Route::get('/','showProducts')->name('products');
 
-Route::get('/{product}','addToCart')->name('product.id');
+Route::get('/Consultar/{product}','addToCart')->name('product.id');
+Route::get('/InfoProduct/{product}','showInfoProducts')->name('product.info');
 
 Route::get('/GetAllProducts', 'getAllProducts');//->GET trae data
 Route::get('/GetAllProductsDataTable', 'getAllProductsForDataTable');//->GET trae data

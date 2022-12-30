@@ -102,6 +102,11 @@ class ProductController extends Controller
 
     }
 
+    public function showInfoProducts(Product $product)
+    {
+        return view('product.product-info',compact('product'));
+    }
+
     public function addToCart(Product $product)
     {
         dd($product);

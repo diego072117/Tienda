@@ -1,6 +1,7 @@
  {{-- Menu --}}
-
-<nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+ {{-- Menu USER --}}
+ 
+ <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
     <div class="container">
         <a class="navbar-brand" href="{{ url('/') }}">SAGA</a>
 
@@ -63,6 +64,7 @@
     </div>
 </nav>
 
+ {{-- Menu ADMIN--}}
 @role('admin')
 <div class="sidebar">
     <div class="sidebar-brand">
@@ -72,7 +74,7 @@
     <div class="sidebar-menu">
         <ul>
             <li>
-                <a href="" class="active"><span class="las la-home"></span>
+                <a href="{{ route('home') }}" class="active"><span class="las la-home"></span>
                 <span>Inicio</span></a>
             </li>
             <li>
@@ -98,13 +100,10 @@
         </ul>
     </div>
 </div>
-
 <div class="main-content">
     <header>
         <h2>
-            <label for="nav-toggle">
-                <span class="las la-bars"></span>
-            </label> Tablero
+            <span class="las la-bars"></span>  
         </h2>
 
         <div class="search-wrapper">
