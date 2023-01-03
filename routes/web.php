@@ -11,6 +11,7 @@ use App\Http\Controllers\CategorieController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\VerificationController;
 use App\Http\Controllers\Auth\ResetPasswordController;
+use App\Http\Controllers\ShoppingCartDetailController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\ConfirmPasswordController;
 
@@ -43,6 +44,15 @@ Route::get('/test', function(){
 
 Route::get('/', [ProductController::class,'showHomeWithProducts'])->name('home');
 
+Route::group(['prefix'=>'Details', 'controller' => ShoppingCartDetailController::class], function(){
+
+  Route::post('/', 'store')->name('shopping_cart_details');
+
+});
+
+Route::get('/CartDetails', [ShoppingCartDetailController::class,'showCart'])->name('cart.info');
+Route::get('/InfoProduct/{product}', [ProductController::class,'showInfoProducts'])->name('product.info');
+
 Route::group(['prefix'=>'Users','middleware' =>['auth', 'role:admin'], 'controller' => UserController::class], function(){
 
  // users
@@ -58,13 +68,13 @@ Route::group(['prefix'=>'Users','middleware' =>['auth', 'role:admin'], 'controll
 
 });
 
-Route::group(['prefix'=>'Products',['middleware' => ['auth', 'role:admin']],'controller' => ProductController::class], function(){
+Route::group(['prefix'=>'Products','middleware' => ['auth', 'role:admin'],'controller' => ProductController::class], function(){
 
 // products
 Route::get('/','showProducts')->name('products');
 
-Route::get('/Consultar/{product}','addToCart')->name('product.id');
-Route::get('/InfoProduct/{product}','showInfoProducts')->name('product.info');
+
+// Route::get('/InfoProduct/{product}','showInfoProducts')->name('product.info');
 
 Route::get('/GetAllProducts', 'getAllProducts');//->GET trae data
 Route::get('/GetAllProductsDataTable', 'getAllProductsForDataTable');//->GET trae data

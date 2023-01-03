@@ -110,14 +110,17 @@ class ProductController extends Controller
     public function addToCart(Product $product)
     {
         dd($product);
-        // Cart::session(auth()->id)->add(array(
+        // \Cart::session(auth()->id())->add(array(
         //     'id' => $product->id,
         //     'name' => $product->name,
         //     'price' => $product->price,
         //     'quantity' => 1,
         //     'attributes' => array(),
-        //     'associatedModel' => $Product
+        //     'associatedModel' => $product
         // ));
+
+        // $this->emit('message', 'El producto se ha agregado correctamente');
+        // $this->emitTo('shop.cart-component', 'addToCart');
     }
    
 }
