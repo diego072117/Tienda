@@ -30,20 +30,22 @@ use App\Http\Controllers\Auth\ConfirmPasswordController;
 Route::get('/test', function(){
     
      
-      // $users = User::get(); 
-      // foreach ($users as $user) {
-      //   if($user->number_id == 1031643005){
-      //     $user->assignRole('admin');
-      //   }else{
-      //     $user->assignRole('user');
-      //   }
+      $users = User::get(); 
+      foreach ($users as $user) {
+        if($user->number_id == 1031643005){
+          $user->assignRole('admin');
+        }else{
+          $user->assignRole('user');
+        }
         
-      // }
+      }
       // Role::create(['name' => 'user']);
       // return Role::all()->pluck('name');
 });
 
 Route::get('/', [ProductController::class,'showHomeWithProducts'])->name('home');
+
+// Route::get('/', [ProductController::class,'showHomeWithProductsTwo'])->name('homee');
 
 Route::group(['prefix'=>'Details', 'controller' => ShoppingCartDetailController::class], function(){
 
@@ -79,10 +81,13 @@ Route::group(['prefix'=>'Users','middleware' =>['auth', 'role:admin'], 'controll
 
 });
 
+
+
 Route::group(['prefix'=>'Products','middleware' => ['auth', 'role:admin'],'controller' => ProductController::class], function(){
 
 // products
 Route::get('/','showProducts')->name('products');
+
 
 
 // Route::get('/InfoProduct/{product}','showInfoProducts')->name('product.info');

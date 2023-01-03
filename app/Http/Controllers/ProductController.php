@@ -18,18 +18,36 @@ class ProductController extends Controller
 
     public function getAllProducts(){
       
-        $products = Product::with('Category')->get();
+        $products = Product::with('Category')->where('category_id', 1)->take(4)->get();
+        return response()->json(['products' => $products],200);
+
+    }
+    public function getAllProductsTwo(){
+      
+        $products = Product::with('Category')->where('category_id', 2)->take(4)->get();
+        return response()->json(['products' => $products],200);
+
+    }
+    public function getAllProductsThree(){
+      +
+        $products = Product::with('Category')->where('category_id', 3)->take(4)->get();
         return response()->json(['products' => $products],200);
 
     }
 
+
+
     public function showHomeWithProducts(){
 
         $products = $this->getAllProducts()->original['products']; 
+        $productss = $this->getAllProductsTwo()->original['products']; 
+        $productsss = $this->getAllProductsThree()->original['products']; 
         
-        return view('index',compact('products')); 
+        return view('index',compact('products','productss','productsss')); 
 
     }
+
+   
 
     // public function getAllUsersWithProduct(){
       
@@ -107,20 +125,6 @@ class ProductController extends Controller
         return view('product.product-info',compact('product'));
     }
 
-    public function addToCart(Product $product)
-    {
-        dd($product);
-        // \Cart::session(auth()->id())->add(array(
-        //     'id' => $product->id,
-        //     'name' => $product->name,
-        //     'price' => $product->price,
-        //     'quantity' => 1,
-        //     'attributes' => array(),
-        //     'associatedModel' => $product
-        // ));
-
-        // $this->emit('message', 'El producto se ha agregado correctamente');
-        // $this->emitTo('shop.cart-component', 'addToCart');
-    }
+    
    
 }

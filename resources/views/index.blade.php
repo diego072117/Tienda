@@ -6,7 +6,7 @@
       
       @foreach ($products as $product)
       
-      @if ($product->category_id == 1)
+     
          <div class="card mx-3 my-3" style="width: 18rem;">
             @if ($product->image)
                   <img src="/storage/images/{{$product->image}}" class="card-img-top" alt="...">
@@ -18,12 +18,18 @@
             <div class="card-body">
             <h5 class="card-title">{{ $product->name }}</h5>
             <p class="card-text">${{ $product->precio}}</p>
-         {!! Form::open(['route'=>'shopping_cart_details', 'method'=>'POST']) !!}
+            @if (Auth::user())
+               {!! Form::open(['route'=>'shopping_cart_details', 'method'=>'POST']) !!}
                <input type="hidden" name="product_id" value="{{$product->id}}">
                <input type="text" name="quantity" value="1">
-            <button type="submit" class="btn btn-primary">Carrito</button>
-         {!! Form::close() !!}
+               <button type="submit" class="btn btn-primary">Carrito</button>
+               {!! Form::close() !!}
+               <a href="{{ route('product.info',['product' => $product->id]) }}" class="btn btn-primary">ver mas</a>
+            @else
             <a href="{{ route('product.info',['product' => $product->id]) }}" class="btn btn-primary">ver mas</a>
+            @endif
+         
+            
             </div>
          </div> 
          {{-- <div class="container-cards">
@@ -45,7 +51,7 @@
                </div>
             </div>
          </div>  --}}
-         @endif
+   
       
       @endforeach
 
@@ -53,8 +59,8 @@
    <h1>Jueguetes</h1>
    <section class="d-flex justify-content-center flex-wrap">
    
-      @foreach ($products as $product)
-         @if ($product->category_id == 2)
+      @foreach ($productss as $product)
+   
          <div class="card mx-3 my-3" style="width: 18rem;">
             @if ($product->image)
                   <img src="/storage/images/{{$product->image}}" class="card-img-top" alt="...">
@@ -66,23 +72,27 @@
             <div class="card-body">
             <h5 class="card-title">{{ $product->name }}</h5>
             <p class="card-text">${{ $product->precio}}</p>
+            @if (Auth::user())
             {!! Form::open(['route'=>'shopping_cart_details', 'method'=>'POST']) !!}
             <input type="hidden" name="product_id" value="{{$product->id}}">
             <input type="text" name="quantity" value="1">
             <button type="submit" class="btn btn-primary">Carrito</button>
             {!! Form::close() !!}
             <a href="{{ route('product.info',['product' => $product->id]) }}" class="btn btn-primary">ver mas</a>
+            @else
+            <a href="{{ route('product.info',['product' => $product->id]) }}" class="btn btn-primary">ver mas</a>
+            @endif
             </div>
          </div> 
-         @endif
+     
       @endforeach
 
    </section>
    <h1>Ropa</h1>
    <section class="d-flex justify-content-center flex-wrap">
    
-      @foreach ($products as $product)
-         @if ($product->category_id == 3)
+      @foreach ($productsss as $product)
+       
          <div class="card mx-3 my-3" style="width: 18rem;">
             @if ($product->image)
                   <img src="/storage/images/{{$product->image}}" class="card-img-top" alt="...">
@@ -95,16 +105,19 @@
             <h5 class="card-title">{{ $product->name }}</h5>
             <p class="card-text">${{ $product->precio}}</p>
             
-               {!! Form::open(['route'=>'shopping_cart_details', 'method'=>'POST']) !!}
-               <input type="hidden" name="product_id" value="{{$product->id}}">
-               <input type="text" name="quantity" value="1">
-               <button type="submit" class="btn btn-primary">Carrito</button>
-               {!! Form::close() !!}
-           
+            @if (Auth::user())
+            {!! Form::open(['route'=>'shopping_cart_details', 'method'=>'POST']) !!}
+            <input type="hidden" name="product_id" value="{{$product->id}}">
+            <input type="text" name="quantity" value="1">
+            <button type="submit" class="btn btn-primary">Carrito</button>
+            {!! Form::close() !!}
             <a href="{{ route('product.info',['product' => $product->id]) }}" class="btn btn-primary">ver mas</a>
+            @else
+            <a href="{{ route('product.info',['product' => $product->id]) }}" class="btn btn-primary">ver mas</a>
+            @endif
             </div>
          </div> 
-         @endif
+        
       @endforeach
 
    </section>
