@@ -6,6 +6,7 @@
               <tr>
                 <th>miniatura</th>
                 <th>Producto</th>
+                <th>Categoria</th>
                 <th>Precio</th>
                 <th>Cantidad</th>
                 <th>SubTotal</th>
@@ -23,6 +24,7 @@
                     @endif 
                 </td>
                 <td>{{ $shopping_cart_detail->product->name}}</td>
+                <td>{{ $shopping_cart_detail->product->category->name}}</td>
                 <td>$/{{ $shopping_cart_detail->product->precio}}</td>
                 <td><input type="number" name="quantity[]" value="{{ $shopping_cart_detail->quantity}}"></td>
                 <td>$/{{ $shopping_cart_detail->total()}}</td>
