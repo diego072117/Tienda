@@ -9,6 +9,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CategorieController;
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\ShoppingCartController;
 use App\Http\Controllers\Auth\VerificationController;
 use App\Http\Controllers\Auth\ResetPasswordController;
 use App\Http\Controllers\ShoppingCartDetailController;
@@ -47,8 +48,18 @@ Route::get('/', [ProductController::class,'showHomeWithProducts'])->name('home')
 Route::group(['prefix'=>'Details', 'controller' => ShoppingCartDetailController::class], function(){
 
   Route::post('/', 'store')->name('shopping_cart_details');
+  Route::get('/CartDetails/{shopping_cart_detail}/destroy', 'destroy')->name('shopping_cart_details.destroy');
 
 });
+
+// Route::group(['prefix'=>'Details', 'controller' => ShoppingCartController::class], function(){
+
+//   Route::post('/CartDetails', 'update')->name('shopping_cart.update');
+
+// });
+
+Route::post('/CartDetails', [ShoppingCartController::class,'update'])->name('shopping_cart.update');
+
 
 Route::get('/CartDetails', [ShoppingCartDetailController::class,'showCart'])->name('cart.info');
 Route::get('/InfoProduct/{product}', [ProductController::class,'showInfoProducts'])->name('product.info');

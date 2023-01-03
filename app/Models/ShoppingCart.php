@@ -7,6 +7,7 @@ use App\Models\ShoppingCartDetail;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Auth;
 
 class ShoppingCart extends Model
 {
@@ -35,6 +36,19 @@ class ShoppingCart extends Model
         
     }
 
+    public static function findOrCreateByUserId($user){
+      
+        $active =  $user->shoppingCarts->where('status', 'ACTIVE')->first();
+        if ($active ) {
+            return $user->shoppingCarts->where('status', 'ACTIVE')->first();
+        } else {
+            return self::create([
+                'user_id'=>auth()->user()->id,
+            ]);
+        }
+        
+    }
+
     public function quantity_of_products(){
         return $this->shopping_cart_details->sum('quantity');
     }
@@ -53,11 +67,23 @@ class ShoppingCart extends Model
         return $shopping_cart;
     }
 
+    public static function get_the_user_shopping_cart(){
+        $shopping_cart = self::findOrCreateByUserId(Auth::user());
+        return $shopping_cart;
+    }
+
     public function my_store($product, $request){
         $this->shopping_cart_details()->create([
             'quantity' => $request->quantity,
             'price' => $product->precio,
             'product_id' => $product->id,
         ]);
+    }
+
+    public function my_update($request){
+        foreach ($this->shopping_cart_details as $key => $detail) {
+            $result[] = array("quantity" =>$request->quantity[$key]);
+            $detail->update($result[$key]);
+        }
     }
 }

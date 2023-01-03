@@ -94,11 +94,13 @@
             <div class="card-body">
             <h5 class="card-title">{{ $product->name }}</h5>
             <p class="card-text">${{ $product->precio}}</p>
-            {!! Form::open(['route'=>'shopping_cart_details', 'method'=>'POST']) !!}
-            <input type="hidden" name="product_id" value="{{$product->id}}">
-            <input type="text" name="quantity" value="1">
-            <button type="submit" class="btn btn-primary">Carrito</button>
-            {!! Form::close() !!}
+            
+               {!! Form::open(['route'=>'shopping_cart_details', 'method'=>'POST']) !!}
+               <input type="hidden" name="product_id" value="{{$product->id}}">
+               <input type="text" name="quantity" value="1">
+               <button type="submit" class="btn btn-primary">Carrito</button>
+               {!! Form::close() !!}
+           
             <a href="{{ route('product.info',['product' => $product->id]) }}" class="btn btn-primary">ver mas</a>
             </div>
          </div> 

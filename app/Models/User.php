@@ -4,6 +4,7 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use App\Models\Lend;
+use App\Models\ShoppingCart;
 use Laravel\Sanctum\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Notifications\Notifiable;
@@ -64,6 +65,10 @@ class User extends Authenticatable
     public function OwnerLends()
     {
         return $this->hasMany(Lend::class, 'owner_user_id', 'id');
+    }
+
+    public function shoppingCarts(){
+        return $this->hasMany(ShoppingCart::class);
     }
     
 }

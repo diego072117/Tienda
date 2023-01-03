@@ -31,7 +31,8 @@ class ShoppingCartDetailController extends Controller
     
     public function destroy(ShoppingCartDetail $shoppingCartDetail)
     {
-        //
+        $shoppingCartDetail->delete();
+        return back();
     }
 
     public function showCart(ShoppingCartDetail $ShoppingCartDetail)
