@@ -30,15 +30,15 @@ use App\Http\Controllers\Auth\ConfirmPasswordController;
 Route::get('/test', function(){
     
      
-      $users = User::get(); 
-      foreach ($users as $user) {
-        if($user->number_id == 1031643005){
-          $user->assignRole('admin');
-        }else{
-          $user->assignRole('user');
-        }
+      // $users = User::get(); 
+      // foreach ($users as $user) {
+      //   if($user->number_id == 1031643005){
+      //     $user->assignRole('admin');
+      //   }else{
+      //     $user->assignRole('user');
+      //   }
         
-      }
+      // }
       // Role::create(['name' => 'user']);
       // return Role::all()->pluck('name');
 });

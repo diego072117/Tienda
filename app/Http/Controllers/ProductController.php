@@ -29,7 +29,7 @@ class ProductController extends Controller
 
     }
     public function getAllProductsThree(){
-      +
+
         $products = Product::with('Category')->where('category_id', 3)->take(4)->get();
         return response()->json(['products' => $products],200);
 
