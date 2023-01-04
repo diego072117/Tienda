@@ -6,9 +6,63 @@ use App\Models\Product;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Yajra\DataTables\Facades\DataTables;
+use App\Http\Requests\Product\CreateProductRequest;
+use App\Http\Requests\Product\UpdateProductRequest;
 
 class ProductController extends Controller
 {
+    // public function showCategory(Product $products)
+    // {
+    //     return view('categories.juegos');
+    // }
+
+    public function getAllProducts(){
+      
+        $products = Product::with('Category')->where('category_id', 1)->get();
+        return response()->json(['products' => $products],200);
+
+    }
+
+    public function getAllProductsCategoryTwo(){
+      
+        $products = Product::with('Category')->where('category_id', 2)->get();
+        return response()->json(['products' => $products],200);
+
+    }
+
+    public function getAllProductsCategoryThree(){
+      
+        $products = Product::with('Category')->where('category_id', 3)->get();
+        return response()->json(['products' => $products],200);
+
+    }
+
+    public function showHomeWithProductsCategoryJuegos(){
+
+        $products = $this->getAllProducts()->original['products']; 
+  
+        
+        return view('categories.juegos',compact('products')); 
+
+    }
+
+    public function showHomeWithProductsCategoryJuguetes(){
+
+
+        $productss = $this->getAllProductsCategoryTwo()->original['products']; 
+  
+        
+        return view('categories.juguetes',compact('productss')); 
+
+    }
+
+    public function showHomeWithProductsCategoryRopa(){
+
+        $productsss = $this->getAllProductsCategoryThree()->original['products']; 
+        
+        return view('categories.ropa',compact('productsss')); 
+
+    }
 
     public function showProducts(){
 
@@ -16,12 +70,13 @@ class ProductController extends Controller
 
     }
 
-    public function getAllProducts(){
+    public function getAllProductsOne(){
       
         $products = Product::with('Category')->where('category_id', 1)->take(4)->get();
         return response()->json(['products' => $products],200);
 
     }
+
     public function getAllProductsTwo(){
       
         $products = Product::with('Category')->where('category_id', 2)->take(4)->get();
@@ -36,10 +91,9 @@ class ProductController extends Controller
     }
 
 
-
     public function showHomeWithProducts(){
 
-        $products = $this->getAllProducts()->original['products']; 
+        $products = $this->getAllProductsOne()->original['products']; 
         $productss = $this->getAllProductsTwo()->original['products']; 
         $productsss = $this->getAllProductsThree()->original['products']; 
         
@@ -63,7 +117,7 @@ class ProductController extends Controller
 
     }
 
-    public function createProduct(Request $request){
+    public function createProduct(CreateProductRequest $request){
 
         $product = new Product($request->all());
         $this->uploadImages($request, $product);
@@ -72,7 +126,7 @@ class ProductController extends Controller
 
     }
 
-    public function updateProduct(Product $product, Request $request){
+    public function updateProduct(Product $product, UpdateProductRequest $request){
 
         $requestAll = $request->all(); 
         $this->uploadImages($request, $product);
@@ -125,6 +179,27 @@ class ProductController extends Controller
         return view('product.product-info',compact('product'));
     }
 
+    // public function showCategory(Product $products)
+    // {
+    //     return view('categories.juegos',compact('products'));
+    // }
+
+    // public function getAllProductsForCategory(){
+
+    //     $products = Product::with('Category')->get();
+    //     return response()->json(['products' => $products],200);
+
+    // }
+
+    // public function showHomeWithForCategory(){
+
+    //     $products = $this->getAllProducts()->original['products']; 
+    //     $productss = $this->getAllProductsTwo()->original['products']; 
+    //     $productsss = $this->getAllProductsThree()->original['products']; 
+        
+    //     return view('index',compact('products','productss','productsss')); 
+
+    // }
     
    
 }

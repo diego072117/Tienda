@@ -39,7 +39,7 @@
           <button type="submit" class="btn btn-warning btn-sm">actualiza</button>
            <h3> Total: $/{{ $shopping_cart->total_price() }}</h3>
           
-        {!! Form::close() !!}
+          {!! Form::close() !!}
 
     </section>
 </x-app>

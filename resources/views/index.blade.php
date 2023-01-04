@@ -2,7 +2,7 @@
 <x-app title="Tienda">
 
    <div class="title-categorie">
-      <h1>Juegos</h1><span>ver</span>
+      <h1>Juegos</h1><span><a href="{{ route('show') }}">ver</a></span>
    </div>
    <section class="container-cards">
       
@@ -71,7 +71,7 @@
 
    </section>
    <div class="title-categorie">
-      <h1>Juguetes</h1><span>ver</span>
+      <h1>Juguetes</h1><span><a href="{{ route('show.ju') }}">ver</a></span>
    </div>
    <section class="d-flex justify-content-center flex-wrap">
    
@@ -113,7 +113,7 @@
 
    </section>
    <div class="title-categorie">
-      <h1>Ropa</h1><span>ver</span>
+      <h1>Ropa</h1><span><a href="{{ route('show.ro') }}">ver</a></span>
    </div>
    <section class="container-cards">
    

@@ -45,7 +45,9 @@ Route::get('/test', function(){
 
 Route::get('/', [ProductController::class,'showHomeWithProducts'])->name('home');
 
-// Route::get('/', [ProductController::class,'showHomeWithProductsTwo'])->name('homee');
+Route::get('/ShowCategoryJuegos', [ProductController::class,'showHomeWithProductsCategoryJuegos'])->name('show');
+Route::get('/ShowCategoryJuguetes', [ProductController::class,'showHomeWithProductsCategoryJuguetes'])->name('show.ju');
+Route::get('/ShowCategoryRopa', [ProductController::class,'showHomeWithProductsCategoryRopa'])->name('show.ro');
 
 Route::group(['prefix'=>'Details', 'controller' => ShoppingCartDetailController::class], function(){
 
@@ -65,6 +67,8 @@ Route::post('/CartDetails', [ShoppingCartController::class,'update'])->name('sho
 
 Route::get('/CartDetails', [ShoppingCartDetailController::class,'showCart'])->name('cart.info');
 Route::get('/InfoProduct/{product}', [ProductController::class,'showInfoProducts'])->name('product.info');
+
+
 
 Route::group(['prefix'=>'Users','middleware' =>['auth', 'role:admin'], 'controller' => UserController::class], function(){
 

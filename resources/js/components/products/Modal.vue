@@ -17,7 +17,8 @@
                         </div>
                         <div class="mb-3">
                             <label for="title" class="form-label">Nombre</label>
-                            <input type="text" class="form-control" id="title" v-model="product.name">
+                            <input type="text" class="form-control" id="name" v-model="product.name">
+                            
                         </div>
                         <div class="mb-3">
                             <label for="description" class="form-label">Categoria</label>
@@ -139,7 +140,8 @@
                 }
                
                 
-            }
+            },
+            
 
 
     }

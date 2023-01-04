@@ -19,7 +19,7 @@
                 <p class="information">{{$product->description}}</p>
 
                 
-                @if (Auth::user())
+                {{-- @if (Auth::user())
                 <div class="control">
                     <button class="btn-info">
 
@@ -41,7 +41,7 @@
                     <a href=""><span class="buy">Inicia sesion</span></a>
                     </button>
                 </div>
-                @endif
+                @endif --}}
                         
             </div>
                 
